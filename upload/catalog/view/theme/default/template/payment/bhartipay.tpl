@@ -1,4 +1,4 @@
-<form action="<?php echo $action; ?>" method="GET">
+<form action="<?php echo $action; ?>" method="POST">
 
     <input type="hidden" name="PAY_ID" value="<?php echo $ap_merchant; ?>"/>
     <input type="hidden" name="ORDER_ID" value="<?php echo $ap_itemcode; ?>"/>
