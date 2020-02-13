@@ -1,6 +1,6 @@
 Arastta
 
-This plugin belongs to Bhartipay payment gateway.
+This plugin belongs to Bubpe payment gateway.
 For Installation and Configuration :
 
 Follow these steps :
@@ -11,7 +11,7 @@ Follow these steps :
 
 3 > Upload the zip file
 
-4 > Now click on edit button on extension > payment > bhartipay
+4 > Now click on edit button on extension > payment > subpe
 
 5 > Fill these details,
 
@@ -20,4 +20,4 @@ Follow these steps :
     * Order Status : Complete
     * Status : enable
 
- Click on save and now you can accept payment via bhartipay payment gateway.
+ Click on save and now you can accept payment via subpe payment gateway.

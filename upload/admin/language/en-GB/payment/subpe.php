@@ -8,12 +8,12 @@
  */
 
 // Heading
-$_['heading_title'] = 'Bhartipay';
+$_['heading_title'] = 'Bubpe';
 
 // Text
 $_['text_payment'] = 'Payment';
-$_['text_success'] = 'Success: You have modified Bhartipay account details!';
-$_['text_edit']    = 'Edit Bhartipay';
+$_['text_success'] = 'Success: You have modified Bubpe account details!';
+$_['text_edit']    = 'Edit Bubpe';
 
 // Entry
 $_['entry_merchant']     = 'Merchant ID';
@@ -26,10 +26,10 @@ $_['entry_status']       = 'Status';
 $_['entry_sort_order']   = 'Sort Order';
 
 // Help
-$_['help_callback'] = 'This has to be set in the Bhartipay control panel. You will also need to check the "IPN Status" to enabled.';
+$_['help_callback'] = 'This has to be set in the Bubpe control panel. You will also need to check the "IPN Status" to enabled.';
 $_['help_total']    = 'The checkout total the order must reach before this payment method becomes active.';
 
 // Error
-$_['error_permission'] = 'Warning: You do not have permission to modify payment Bhartipay!';
+$_['error_permission'] = 'Warning: You do not have permission to modify payment Bubpe!';
 $_['error_merchant']   = 'Merchant ID Required!';
 $_['error_security']   = 'Security Code Required!';

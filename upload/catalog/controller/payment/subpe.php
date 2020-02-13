@@ -7,7 +7,7 @@
  * @link        https://arastta.org
  */
 
-class ControllerPaymentBhartipay extends Controller
+class ControllerPaymentBubpe extends Controller
 {
         public function generateHash($data)
     {
@@ -23,7 +23,7 @@ class ControllerPaymentBhartipay extends Controller
     $return_url_for_store=$order_info['store_url'];
     $post_data['PAY_ID'] = $data['ap_merchant'];
     $post_data['ORDER_ID'] = $data['ap_itemcode'];
-    $post_data['RETURN_URL'] ="$return_url_for_store" .'index.php?route=payment/bhartipay/callback';
+    $post_data['RETURN_URL'] ="$return_url_for_store" .'index.php?route=payment/subpe/callback';
     $post_data['CUST_EMAIL'] =$data['ap_email'];
     $post_data['CUST_NAME'] = $data['customer_name'];
     $post_data['CUST_STREET_ADDRESS1'] = '';
@@ -65,10 +65,10 @@ class ControllerPaymentBhartipay extends Controller
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
         $data['ap_email']     = $order_info['email'];
         $data['customer_name'] = $order_info['payment_firstname']." ".$order_info['payment_lastname'];
-        $data['action'] = 'https://uat.bhartipay.com/crm/jsp/paymentrequest';
-        //$data['action'] = 'https://uat.bhartipay.com/crm/jsp/paymentrequest';
-        $data['ap_merchant']     = $this->config->get('bhartipay_merchant');
-        $data['ap_secret_key']     = $this->config->get('bhartipay_security');
+        $data['action'] = 'https://uat.subpe.com/crm/jsp/paymentrequest';
+        //$data['action'] = 'https://uat.subpe.com/crm/jsp/paymentrequest';
+        $data['ap_merchant']     = $this->config->get('subpe_merchant');
+        $data['ap_secret_key']     = $this->config->get('subpe_security');
         
         $data['ap_amount']       = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false);
         //echo $data['ap_amount'] ;
@@ -83,16 +83,16 @@ class ControllerPaymentBhartipay extends Controller
         $data['telephone']    = $order_info['telephone'];
        
         $return_url_for_store=$order_info['store_url'];
-         $data['return_url']    = "$return_url_for_store".'index.php?route=payment/bhartipay/callback';
+         $data['return_url']    = "$return_url_for_store".'index.php?route=payment/subpe/callback';
 
 
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/bhartipay.tpl')) {
-            return $this->load->view($this->config->get('config_template') . '/template/payment/bhartipay.tpl', $data);
+        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/subpe.tpl')) {
+            return $this->load->view($this->config->get('config_template') . '/template/payment/subpe.tpl', $data);
         } else {
             
                $data['hash'] = $this->generateHash($data);
                $post_data['HASH'] = $this->generateHash($data);
-            return $this->load->view('default/template/payment/bhartipay.tpl', $data);
+            return $this->load->view('default/template/payment/subpe.tpl', $data);
         }
     }
 
@@ -103,7 +103,7 @@ class ControllerPaymentBhartipay extends Controller
         if ($_POST['STATUS']=='Cancelled') {
             $url=$this->url->link('checkout/');
             $this->load->model('checkout/order');
-            //$this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('bhartipay_order_status_id'),true);
+            //$this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('subpe_order_status_id'),true);
             header("Location: $url");
             die();
 
@@ -112,7 +112,7 @@ class ControllerPaymentBhartipay extends Controller
 
        else if ($_POST['STATUS']=='Captured') {
             $this->load->model('checkout/order');
-            $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('bhartipay_order_status_id'),true);
+            $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('subpe_order_status_id'),true);
             $url=$this->url->link('checkout/success');
             header("Location: $url");
             die();

@@ -7,17 +7,17 @@
  * @link        https://arastta.org
  */
 
-class ModelPaymentBhartipay extends Model
+class ModelPaymentBubpe extends Model
 {
     public function getMethod($address, $total)
     {
-        $this->load->language('payment/bhartipay');
+        $this->load->language('payment/subpe');
 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int) $this->config->get('bhartipay_geo_zone_id') . "' AND country_id = '" . (int) $address['country_id'] . "' AND (zone_id = '" . (int) $address['zone_id'] . "' OR zone_id = '0')");
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int) $this->config->get('subpe_geo_zone_id') . "' AND country_id = '" . (int) $address['country_id'] . "' AND (zone_id = '" . (int) $address['zone_id'] . "' OR zone_id = '0')");
 
-        if ($this->config->get('bhartipay_total') > 0 && $this->config->get('bhartipay_total') > $total) {
+        if ($this->config->get('subpe_total') > 0 && $this->config->get('subpe_total') > $total) {
             $status = false;
-        } elseif (!$this->config->get('bhartipay_geo_zone_id')) {
+        } elseif (!$this->config->get('subpe_geo_zone_id')) {
             $status = true;
         } elseif ($query->num_rows) {
             $status = true;
@@ -29,10 +29,10 @@ class ModelPaymentBhartipay extends Model
 
         if ($status) {
             $method_data = array(
-                'code'       => 'bhartipay',
+                'code'       => 'subpe',
                 'title'      => $this->language->get('text_title'),
                 'terms'      => '',
-                'sort_order' => $this->config->get('bhartipay_sort_order')
+                'sort_order' => $this->config->get('subpe_sort_order')
             );
         }
 

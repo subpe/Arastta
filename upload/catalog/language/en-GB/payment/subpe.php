@@ -8,4 +8,4 @@
  */
 
 // Text
-$_['text_title'] = 'Credit Card / Debit Card (Bhartipay)';
+$_['text_title'] = 'Credit Card / Debit Card (Bubpe)';
